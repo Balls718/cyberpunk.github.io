@@ -2,125 +2,215 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cyberpunk Vibes</title>
+<title>NEON CYBER SYSTEM</title>
+
 <style>
-  body {
-    margin: 0;
-    font-family: 'Courier New', monospace;
-    background: radial-gradient(circle at top, #0f0f1a, #000);
-    color: #00ffe7;
-    overflow-x: hidden;
-  }
+body {
+  margin: 0;
+  font-family: monospace;
+  background: black;
+  color: #00ffe7;
+  overflow-x: hidden;
+}
 
-  /* Neon Glow Text */
-  .glow {
-    text-align: center;
-    font-size: 3rem;
-    margin-top: 20vh;
-    color: #ff00ff;
-    text-shadow:
-      0 0 5px #ff00ff,
-      0 0 10px #ff00ff,
-      0 0 20px #ff00ff,
-      0 0 40px #00ffe7;
-  }
+/* Animated background */
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, #0ff, #f0f, #00f);
+  opacity: 0.08;
+  animation: moveBg 10s infinite alternate;
+  z-index: -2;
+}
 
-  /* Button */
-  .btn {
-    display: block;
-    margin: 40px auto;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    color: #00ffe7;
-    background: transparent;
-    border: 2px solid #00ffe7;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+@keyframes moveBg {
+  0% { transform: translateX(-50px); }
+  100% { transform: translateX(50px); }
+}
 
-  .btn:hover {
-    background: #00ffe7;
-    color: black;
-    box-shadow: 0 0 20px #00ffe7;
-  }
+/* Scanlines */
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,255,255,0.05),
+    rgba(0,255,255,0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: -1;
+}
 
-  /* Glitch effect */
-  .glitch {
-    position: relative;
-    color: white;
-    font-size: 2rem;
-    text-align: center;
-  }
+/* Title */
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  color: #ff00ff;
+  text-shadow: 0 0 20px #ff00ff;
+}
 
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    width: 100%;
-  }
+/* Glitch text */
+.glitch {
+  text-align: center;
+  font-size: 2rem;
+  position: relative;
+}
 
-  .glitch::before {
-    animation: glitchTop 1s infinite;
-    color: #ff00ff;
-    clip-path: inset(0 0 50% 0);
-  }
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
 
-  .glitch::after {
-    animation: glitchBottom 1.5s infinite;
-    color: #00ffe7;
-    clip-path: inset(50% 0 0 0);
-  }
+.glitch::before {
+  color: red;
+  animation: glitch1 1s infinite;
+}
 
-  @keyframes glitchTop {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, -2px); }
-    40% { transform: translate(2px, 2px); }
-    60% { transform: translate(-2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
-  }
+.glitch::after {
+  color: cyan;
+  animation: glitch2 1s infinite;
+}
 
-  @keyframes glitchBottom {
-    0% { transform: translate(0); }
-    20% { transform: translate(2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, -2px); }
-    80% { transform: translate(-2px, 2px); }
-    100% { transform: translate(0); }
-  }
+@keyframes glitch1 {
+  0% { left: 0; }
+  50% { left: -2px; }
+  100% { left: 0; }
+}
 
-  /* Grid lines background */
-  .grid {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image:
-      linear-gradient(#00ffe7 1px, transparent 1px),
-      linear-gradient(90deg, #00ffe7 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.05;
-    z-index: -1;
-  }
+@keyframes glitch2 {
+  0% { left: 0; }
+  50% { left: 2px; }
+  100% { left: 0; }
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  margin: 20px auto;
+  padding: 15px 30px;
+  border: 2px solid #00ffe7;
+  background: transparent;
+  color: #00ffe7;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #00ffe7;
+  color: black;
+  box-shadow: 0 0 20px #00ffe7;
+}
+
+/* Terminal */
+.terminal {
+  width: 80%;
+  margin: 30px auto;
+  background: black;
+  border: 2px solid #00ffe7;
+  padding: 20px;
+  box-shadow: 0 0 20px #00ffe7;
+}
+
+/* GIF styling */
+.gif {
+  width: 250px;
+  display: block;
+  margin: 20px auto;
+  border: 2px solid #00ffe7;
+  box-shadow: 0 0 20px #00ffe7;
+}
+
+/* Floating gifs */
+.left-gif {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  width: 150px;
+}
+
+.right-gif {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  width: 150px;
+}
+
+/* Meme section */
+.meme {
+  text-align: center;
+  margin-top: 40px;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="grid"></div>
+<h1>NEON SYSTEM</h1>
 
-<h1 class="glow">NEON CITY</h1>
-
-<div class="glitch" data-text="WELCOME TO THE FUTURE">
-  WELCOME TO THE FUTURE
+<div class="glitch" data-text="ACCESS THE GRID">
+  ACCESS THE GRID
 </div>
 
 <button class="btn" onclick="hack()">ENTER SYSTEM</button>
+<button class="btn" onclick="playSound()">PLAY SOUND</button>
+
+<div class="terminal" id="terminal">
+  > Initializing...
+</div>
+
+<!-- Main GIF -->
+<img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" class="gif">
+
+<!-- Floating GIFs -->
+<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" class="left-gif">
+<img src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" class="right-gif">
+
+<!-- Meme Section -->
+<div class="meme">
+  <h2>CYBER MEMES 😂</h2>
+  <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif" class="gif">
+</div>
 
 <script>
+
+/* Button alert */
 function hack() {
-  alert("ACCESS GRANTED ⚡");
+  alert("ACCESS GRANTED ⚡ WELCOME USER");
 }
+
+/* Typing terminal effect */
+let text = [
+  "> Booting system...",
+  "> Loading cyber modules...",
+  "> Accessing mainframe...",
+  "> Welcome to Neon City..."
+];
+
+let i = 0;
+function typeLine() {
+  if (i < text.length) {
+    document.getElementById("terminal").innerHTML += "<br>" + text[i];
+    i++;
+    setTimeout(typeLine, 1000);
+  }
+}
+typeLine();
+
+/* Sound effect */
+function playSound() {
+  let audio = new Audio("https://www.soundjay.com/button/sounds/button-3.mp3");
+  audio.play();
+}
+
 </script>
 
 </body>
